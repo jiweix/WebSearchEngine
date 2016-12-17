@@ -24,13 +24,11 @@ public class DocumentIndexed extends Document {
     this._documentTermFrequency = termFreq;
   }
 
-
   public void setSize(short size) {
     this._size = size;
   }
 
   public int getDocSize() {
     return this._size;
-
   }
 }

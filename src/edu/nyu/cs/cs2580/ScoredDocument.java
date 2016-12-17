@@ -20,11 +20,6 @@ class ScoredDocument implements Comparable<ScoredDocument> {
   }
 
   public String asTextResult() {
-//    StringBuffer buf = new StringBuffer();
-//    buf.append(_doc._docid).append("\t");
-//    buf.append(_doc.getTitle()).append("\t");
-//    buf.append(_score);
-//    return buf.toString();
     return _doc.getProduct().toString() + "\n";
   }
 
@@ -32,13 +27,6 @@ class ScoredDocument implements Comparable<ScoredDocument> {
    * @CS2580: Student should implement {@code asHtmlResult} for final project.
    */
   public String asHtmlResult() {
-//    StringBuilder html = new StringBuilder();
-//    html.append( "<tr>\n" );
-//       html.append( "<td>" + _doc._docid + "</td>\n" );
-//        html.append( "<td><a href=" + _doc.getUrl()+">" + _doc.getTitle() + "</a></td>\n" );
-//        html.append( "<td>" + _score + "</td>\n" );
-//        html.append( "</tr>\n" );
-//    return html.toString();
     StringBuffer results = new StringBuffer();
     results.append(String.format("consineScore: %-10.2f\t", _cosineScore))
             .append(String.format("_twitterScore: %-10.2f\t", _twitterScore))

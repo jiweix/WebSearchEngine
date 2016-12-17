@@ -15,14 +15,12 @@ public class Stemmer {
   }
 
   private Stemmer() {
-
   }
 
   public static String stem(String s) {
     if (s == null || s.isEmpty()) {
       return "";
     }
-
     s = s.toLowerCase();
     if (s.endsWith("ingly") || s.endsWith("edly") || s.endsWith("ches")) {
       return instance.step1(s.substring(0, s.length()-2));
@@ -31,9 +29,7 @@ public class Stemmer {
   }
 
   private String step1( String str ) {
-
     NewString stem = new NewString();
-
     if ( str.charAt( str.length()-1 ) == 's' ) {
       if ( (hasSuffix( str, "sses", stem )) || (hasSuffix( str, "ies", stem)) ){
         String tmp = "";
@@ -54,7 +50,6 @@ public class Stemmer {
         }
       }
     }
-
     if ( hasSuffix( str,"eed",stem ) ) {
       if ( measure( stem.str ) > 0 ) {
         String tmp = "";
@@ -97,7 +92,6 @@ public class Stemmer {
         }
       }
     }
-
     if ( hasSuffix(str,"y",stem) )
       if ( containsVowel( stem.str ) ) {
         String tmp = "";
@@ -109,24 +103,18 @@ public class Stemmer {
   }
 
   private boolean hasSuffix( String word, String suffix, NewString stem ) {
-
     String tmp = "";
-
     if ( word.length() <= suffix.length() )
       return false;
     if (suffix.length() > 1)
       if ( word.charAt( word.length()-2 ) != suffix.charAt( suffix.length()-2 ) )
         return false;
-
     stem.str = "";
-
     for ( int i=0; i<word.length()-suffix.length(); i++ )
       stem.str += word.charAt( i );
     tmp = stem.str;
-
     for ( int i=0; i<suffix.length(); i++ )
       tmp += suffix.charAt( i );
-
     if ( tmp.compareTo( word ) == 0 )
       return true;
     else
@@ -134,7 +122,6 @@ public class Stemmer {
   }
 
   private boolean containsVowel( String word ) {
-
     for (int i=0 ; i < word.length(); i++ )
       if ( i > 0 ) {
         if ( vowel(word.charAt(i),word.charAt(i-1)) )
@@ -144,37 +131,29 @@ public class Stemmer {
         if ( vowel(word.charAt(0),'a') )
           return true;
       }
-
     return false;
   }
 
   private boolean vowel( char ch, char prev ) {
     switch ( ch ) {
-
       case 'a': case 'e': case 'i': case 'o': case 'u':
         return true;
       case 'y': {
-
         switch ( prev ) {
           case 'a': case 'e': case 'i': case 'o': case 'u':
-
             return false;
-
           default:
             return true;
         }
       }
       default :
-
         return false;
     }
   }
 
   private int measure( String stem ) {
-
     int i=0, count = 0;
     int length = stem.length();
-
     while ( i < length ) {
       for ( ; i < length ; i++ ) {
         if ( i > 0 ) {
@@ -186,7 +165,6 @@ public class Stemmer {
             break;
         }
       }
-
       for ( i++ ; i < length ; i++ ) {
         if ( i > 0 ) {
           if ( !vowel(stem.charAt(i),stem.charAt(i-1)) )
@@ -202,20 +180,16 @@ public class Stemmer {
         i++;
       }
     } //while
-
     return(count);
   }
 
   private boolean cvc( String str ) {
     int length=str.length();
-
     if ( length < 3 )
       return false;
-
     if ( (!vowel(str.charAt(length-1),str.charAt(length-2)) )
         && (str.charAt(length-1) != 'w') && (str.charAt(length-1) != 'x') && (str.charAt(length-1) != 'y')
         && (vowel(str.charAt(length-2),str.charAt(length-3))) ) {
-
       if (length == 3) {
         if (!vowel(str.charAt(0),'?'))
           return true;
@@ -229,7 +203,6 @@ public class Stemmer {
           return false;
       }
     }
-
     return false;
   }
 }

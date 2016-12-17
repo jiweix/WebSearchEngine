@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * List of stop words to remove from query (Not in phrase mode)
  * Created by Jiwei Xu on 10/24/16.
  */
 public class Stopwords {

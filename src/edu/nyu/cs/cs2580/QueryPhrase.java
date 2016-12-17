@@ -46,7 +46,6 @@ public class QueryPhrase extends Query {
     nonPhraseProcess(temp);
   }
 
-
   private String processPhrase(String s) {
     String res = "";
     String prefix = "";
